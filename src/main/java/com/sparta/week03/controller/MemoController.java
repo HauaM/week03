@@ -5,8 +5,10 @@ import com.sparta.week03.domain.Memo;
 import com.sparta.week03.domain.MemoRepository;
 import com.sparta.week03.domain.MemoRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,7 +26,8 @@ public class MemoController {
 
     @GetMapping("/api/memos")
     public List<Memo> get(){
-        return repository.findAllByOrderByModifiedAtDesc();
+//        return repository.findAllByOrderByModifiedAtDesc();
+        return repository.findAllByOrderByModifiedAtDesc(LocalDateTime.now(), LocalDateTime.now().minusDays(1));
     }
 
     @DeleteMapping("/api/memos/{id}")
