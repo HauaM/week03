@@ -27,7 +27,7 @@ public class MemoController {
     @GetMapping("/api/memos")
     public List<Memo> get(){
 //        return repository.findAllByOrderByModifiedAtDesc();
-        return repository.findAllByOrderByModifiedAtDesc(LocalDateTime.now(), LocalDateTime.now().minusDays(1));
+        return repository.findAllByModifiedAtBetweenOrderByModifiedAtDesc(LocalDateTime.now().minusDays(1), LocalDateTime.now() );
     }
 
     @DeleteMapping("/api/memos/{id}")

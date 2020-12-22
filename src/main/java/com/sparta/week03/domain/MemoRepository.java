@@ -9,8 +9,8 @@ import java.util.List;
 public interface MemoRepository extends JpaRepository<Memo, Long> {
     List<Memo> findAllByOrderByModifiedAtDesc();
 
-    //List<Memo> findByStartDateBetween(LocalDateTime modifiedAt, LocalDateTime );
+    List<Memo> findAllByModifiedAtBetweenOrderByModifiedAtDesc(LocalDateTime start, LocalDateTime end);
 
-    @Query("select Memo from Memo a where a.modifiedAt between :toDay and :lastDay")
-    List<Memo> findAllByOrderByModifiedAtDesc(@Param("toDay") LocalDateTime start, @Param("lastDay") LocalDateTime end);
+   // @Query("select a from Memo a where a.modifiedAt between :toDay and :lastDay")
+   // List<Memo> findAllByOrderByModifiedAtDesc(@Param("toDay") LocalDateTime start, @Param("lastDay") LocalDateTime end);
 }
